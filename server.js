@@ -23,7 +23,7 @@ var domainName = settings.server_domain;
 
 
 
-var WebSocketServer = require('wss').Server
+var WebSocketServer = require('ws').Server
 var wss = new WebSocketServer({
 	port : wsPort
 }); // TODO: CHANGE TO YOUR OWN PORT
