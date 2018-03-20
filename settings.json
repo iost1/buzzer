@@ -2,7 +2,7 @@ settings =
 {
 	"player_limit"	: 11
 	,
-	"server_domain"	: "freefruitandthevegetablesquiz.azurewebsites.net"
+	"server_domain"	: "ffvquiz.herokuapp.com"
 	,
 	"ws_port"		: 433
 	,
