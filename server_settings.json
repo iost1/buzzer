@@ -3,7 +3,7 @@
 	,
 	"server_domain"	: "ffvquiz.herokuapp.com"
 	,
-	"ws_port"		: 433
+	"ws_port"		: 80
 	,
-	"server_port"	: 433
+	"server_port"	: 80
 }
