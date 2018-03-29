@@ -20,6 +20,9 @@ var wsPort = parseInt(settings.ws_port);
 var serverPort = settings.server_port;
 var domainName = settings.server_domain;
 
+
+
+
 var WebSocketServer = require('ws').Server
 var wss = new WebSocketServer({
 	port : wsPort
