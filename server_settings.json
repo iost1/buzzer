@@ -1,9 +1,9 @@
 {
 	"player_limit"	: 11
 	,
-	"server_domain"	: "localhost"
+	"server_domain"	: "freefruitandthevegetablesquiz.azurewebsites.net"
 	,
-	"ws_port"		: 8338
+	"ws_port"		: 80
 	,
-	"server_port"	: 8008
+	"server_port"	: 80
 }

@@ -15,7 +15,11 @@ var id;
 var connectedPlayers = [];
 
 function giveBirthToSocket() {
-	socket = new WebSocket("ws:" + serverDomain + ":" + wsPort);
+	var conn = new WebSocket('wss:' + serverDomain + ':' + wsPort);
+	conn.onmessage = function(e){ console.log(e.data); };
+	conn.onopen = () => conn.send('hello');
+	
+	socket = new WebSocket("wss:" + serverDomain + ":" + wsPort);
 
 	socket.onopen = function(event) {
 
