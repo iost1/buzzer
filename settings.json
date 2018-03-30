@@ -1,10 +1,7 @@
-settings = 
+settings =
 {
-	"player_limit"	: 11
-	,
-	"server_domain"	: "freefruitandthevegetablesquiz.azurewebsites.net"
-	,
-	"ws_port"		: 80
-	,
-	"server_port"	: 80
+  "player_limit": 14,
+  "server_domain": "localhost",
+  "ws_port": 8338,
+  "server_port": 8008
 };

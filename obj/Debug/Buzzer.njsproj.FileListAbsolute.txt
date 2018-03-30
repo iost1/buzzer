@@ -1,0 +1,3 @@
+D:\repo\buzzer\obj\Debug\Buzzer.njsprojResolveAssemblyReference.cache
+D:\repo\buzzer\obj\Debug\Buzzer.njsproj.CoreCompileInputs.cache
+D:\repo\buzzer\bin\Microsoft.NodejsTools.WebRole.dll
