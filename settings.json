@@ -1,7 +1,7 @@
 settings =
 {
   "player_limit": 14,
-  "server_domain": "localhost",
+  "server_domain": "quiz.jost1.no",
   "ws_port": 8338,
   "server_port": 8008
 };
