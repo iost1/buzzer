@@ -1,6 +1,3 @@
-/**
- * 
- */
 
 /*
  * 
@@ -9,8 +6,7 @@
  * wss.broadcast(JSON.stringify({ 'label': 'abort desktop connection' }));
  * 
  */
-
-var fs = require("fs");
+const fs = require("fs");
 console.log("Reading settings...");
 var contents = fs.readFileSync("server_settings.json");
 var settings = JSON.parse(contents);
@@ -20,11 +16,19 @@ var wsPort = parseInt(settings.ws_port);
 var serverPort = settings.server_port;
 var domainName = settings.server_domain;
 
-var WebSocketServer = require('ws').Server
-var wss = new WebSocketServer({
-    port: wsPort
-}); // TODO: CHANGE TO YOUR OWN PORT
-console.log("ws server running on port " + wsPort);
+
+
+const Https = require('https');
+const WebSocketServer = require('ws').Server;
+
+const httpsServer = Https.createServer({
+    key: Fs.readFileSync(process.env.KEY),
+    cert: Fs.readFileSync(process.env.CERT)
+});
+const wss = new WebSocketServer({
+    server: httpsServer
+});
+
 
 var hostConnected = 0;
 //var players = 0;
@@ -41,7 +45,7 @@ var buzzOrder = [];
 var resetting = 0;
 
 wss.on('close', function () {
-    console.log('disconnected');
+    console.log('socket closed');
 });
 
 wss.broadcast = function (message) {
@@ -73,7 +77,7 @@ wss.on('connection', function (ws) {
                     }));
                 } else {
                     sidToPidMap[sid] = -1;
-                    console.log("Host sid: " + sid)
+                    console.log("Host sid: " + sid);
                     hostConnected = 1;
                     connectionsDisabled = 0;
                     wss.broadcast(JSON.stringify({
@@ -111,13 +115,13 @@ wss.on('connection', function (ws) {
                 buzzEnabled = 1;
                 buzzOrder = [];
                 wss.broadcast(JSON.stringify({
-                    'label': 'enable buzz',
+                    'label': 'enable buzz'
                 }));
                 break;
             case 'buzz':
                 if (buzzEnabled) {
                     var pid = msg.pid;
-                    if (buzzOrder.indexOf(pid) == -1) {
+                    if (buzzOrder.indexOf(pid) === -1) {
                         buzzOrder.push(pid);
                         wss.broadcast(JSON.stringify({
                             'label': 'buzz order',
@@ -140,7 +144,7 @@ wss.on('connection', function (ws) {
     ws.on('close', function () {
         if (!resetting) {
             var pid = sidToPidMap[sid];
-            if (pid == -1) {
+            if (pid === -1) {
                 //host disconnected
                 console.log("Host disconnected! Resetting server.");
                 resetting = 1;
@@ -198,7 +202,3 @@ app.listen(serverPort);
 console.log("express server running on port " + serverPort);
 console.log("connect with " + domainName + ":" + serverPort + "/host.html or /button.html");
 
-// fetch files via
-// http://cslinux.utm.utoronto.ca:10021/host.html
-// or
-// http://cslinux.utm.utoronto.ca:10021/button.html

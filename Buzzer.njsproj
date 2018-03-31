@@ -17,6 +17,7 @@
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
   <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
   <ItemGroup>
+    <Content Include="index.html" />
     <Content Include="instructions.txt" />
     <Content Include="button.html" />
     <Content Include="connection_refused.html" />
