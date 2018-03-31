@@ -23,6 +23,8 @@
     <Content Include="connection_refused.html" />
     <Content Include="host.html" />
     <Content Include="package.json" />
+    <Content Include="quiz.jost1.no-crt.pem" />
+    <Content Include="quiz.jost1.no-key.pem" />
     <Content Include="server_settings.json" />
     <Content Include="settings.json" />
     <Content Include="README.md" />
