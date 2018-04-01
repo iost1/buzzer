@@ -34,6 +34,7 @@ var resetting = 0;
 
 
 console.log("Setting up websocketserver on port " + wsPort);
+console.log("process.env.PORT: " + process.env.PORT);
 var privatekey = fs.readFileSync('quiz.jost1.no-key.pem', 'utf8');
 var cerfificate = fs.readFileSync('quiz.jost1.no-crt.pem', 'utf8');
 var credentials = { key: privatekey, cert: cerfificate };
