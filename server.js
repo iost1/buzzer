@@ -33,7 +33,7 @@ var buzzOrder = [];
 var resetting = 0;
 
 
-console.log("Setting up websocketserver");
+console.log("Setting up websocketserver on port " + wsPort);
 var privatekey = fs.readFileSync('quiz.jost1.no-key.pem', 'utf8');
 var cerfificate = fs.readFileSync('quiz.jost1.no-crt.pem', 'utf8');
 var credentials = { key: privatekey, cert: cerfificate };
