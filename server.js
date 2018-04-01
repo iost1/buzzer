@@ -71,9 +71,7 @@ wss.kick = function () {
 
 wss.on('connection', function (ws) {
     console.log("wss connected");
-    ws.on('error', function() {
-
-    };
+    
     var sid = sguid();
     // New client connected
     ws.on('message', function (message) {
@@ -185,9 +183,6 @@ wss.on('connection', function (ws) {
     });
 });
 
-function OnSocketError(ev) {
-    console.log("Socket error: " + ev.data);
-}
 var getAvailablePID = function () {
     for (var i = 1; i <= playerLimit; i++) {
         if (!players[i]) {
