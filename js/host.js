@@ -17,16 +17,12 @@ var connectedPlayers = [];
 function giveBirthToSocket() {
     socket = new WebSocket("wss:" + serverDomain + ":" + wsPort);
 
-    socket.on('open',
-        function open() {
-            socket.send('opening');
-        });
     socket.onopen = function (event) {
-
+        socket.send('opening');
     };
 
     socket.onclose = function (event) {
-
+        socket.send('closing');
     };
 
     // Received a message from the server
