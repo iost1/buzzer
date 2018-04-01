@@ -1,6 +1,6 @@
 {
   "player_limit": 14,
   "server_domain": "quiz.jost1.no",
-  "ws_port": process.env.PORT,
+  "ws_port": 8008,
   "server_port": 443
 }
