@@ -37,14 +37,16 @@ console.log("Setting up websocketserver on port " + wsPort);
 var privatekey = fs.readFileSync('quiz.jost1.no-key.pem', 'utf8');
 var cerfificate = fs.readFileSync('quiz.jost1.no-crt.pem', 'utf8');
 var credentials = { key: privatekey, cert: cerfificate };
-var https = require('https');
-var httpsServer = https.createServer(credentials);
-httpsServer.listen(wsPort);
+var http = require('http');
+var httpServer = http.createServer(function(req, res) {
+    res.writeHead(200, { 'Content-Type': 'text/html' });
+    res.end('Hello, world');
+}).listen(process.env.PORT);
 
 var WebSocketServer = require('ws').Server;
 
 var wss = new WebSocketServer({
-    server: httpsServer
+    server: httpServer
 });
 
 
@@ -69,7 +71,9 @@ wss.kick = function () {
 
 wss.on('connection', function (ws) {
     console.log("wss connected");
-    ws.onerror = OnSocketError;
+    ws.on('error', function() {
+
+    };
     var sid = sguid();
     // New client connected
     ws.on('message', function (message) {
