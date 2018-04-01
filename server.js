@@ -26,7 +26,8 @@ const httpsServer = Https.createServer({
     cert: Fs.readFileSync("/quiz.jost1.no-crt.pem")
 });
 const wss = new WebSocketServer({
-    server: httpsServer
+    server: httpsServer,
+    port: ws_port
 });
 
 
