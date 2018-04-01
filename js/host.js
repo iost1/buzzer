@@ -2,7 +2,7 @@
  * 
  */
 
-var wsPort = process.env.port || settings.ws_port;
+var wsPort =  settings.ws_port;
 var serverDomain = settings.server_domain;
 
 var socket;

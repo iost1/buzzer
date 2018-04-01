@@ -14,7 +14,7 @@ var contents = fs.readFileSync("server_settings.json");
 var settings = JSON.parse(contents);
 
 var playerLimit = settings.player_limit;
-var wsPort = process.env.port || parseInt(settings.ws_port);
+var wsPort = parseInt(settings.ws_port);
 var serverPort = settings.server_port;
 var domainName = settings.server_domain;
 
