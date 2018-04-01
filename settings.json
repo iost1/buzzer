@@ -2,6 +2,6 @@ settings =
 {
   "player_limit": 14,
   "server_domain": "quiz.jost1.no",
-  "ws_port": 8338,
+  "ws_port": 80,
   "server_port": 443
 };
