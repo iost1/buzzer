@@ -17,6 +17,10 @@ var connectedPlayers = [];
 function giveBirthToSocket() {
     socket = new WebSocket("wss:" + serverDomain + ":" + wsPort);
 
+    socket.on('open',
+        function open() {
+            socket.send('opening');
+        });
     socket.onopen = function (event) {
 
     };
@@ -30,14 +34,14 @@ function giveBirthToSocket() {
         var msg = JSON.parse(event.data);
         switch (msg.label) {
             case 'accepted host connection':
-                if (msg.id == id) {
+                if (msg.id === id) {
                     connectionAccepted = 1;
                 } else {
                     window.location.href = "connection_refused.html";
                 }
                 break;
             case 'abort host connection':
-                if (msg.id == id) {
+                if (msg.id === id) {
                     window.location.href = "connection_refused.html";
                 }
                 break;
@@ -52,6 +56,7 @@ function giveBirthToSocket() {
                 setBuzzOrder(buzzOrder);
                 break;
             default:
+                console.log(data);
             // Nothing
         }
     };
@@ -60,7 +65,7 @@ function giveBirthToSocket() {
             'id': id,
             'label': 'host connection'
         }));
-    }, 500);
+    }, 5000);
 }
 
 function addToConnected(pid) {
