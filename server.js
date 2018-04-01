@@ -27,7 +27,7 @@ const httpsServer = Https.createServer({
 });
 const wss = new WebSocketServer({
     server: httpsServer,
-    port: ws_port
+    port: wsPort
 });
 
 
