@@ -6,7 +6,8 @@
  * wss.broadcast(JSON.stringify({ 'label': 'abort desktop connection' }));
  * 
  */
-const fs = require("fs");
+
+
 console.log("Reading settings...");
 var contents = fs.readFileSync("server_settings.json");
 var settings = JSON.parse(contents);
@@ -15,21 +16,6 @@ var playerLimit = settings.player_limit;
 var wsPort = parseInt(settings.ws_port);
 var serverPort = settings.server_port;
 var domainName = settings.server_domain;
-
-
-
-const Https = require('https');
-const WebSocketServer = require('ws').Server;
-
-const httpsServer = Https.createServer({
-    key: fs.readFileSync("quiz.jost1.no-key.pem"),
-    cert: fs.readFileSync("quiz.jost1.no-crt.pem")
-});
-const wss = new WebSocketServer({
-    server: httpsServer,
-    port: wsPort
-});
-
 
 var hostConnected = 0;
 //var players = 0;
@@ -44,6 +30,24 @@ var sidToPidMap = {};
 var buzzOrder = [];
 
 var resetting = 0;
+
+
+console.log("Setting up websocketserver");
+var fs = require("fs");
+var privatekey = fs.readFileSync('quiz.jost1.no-key.pem', 'utf8');
+var cerfificate = fs.readFileSync('quiz.jost1.no-crt.pem', 'utf8');
+var credentials = { key: privatekey, cert: cerfificate };
+var https = require('https');
+var httpsServer = https.createServer(credentials);
+httpsServer.listen(wsPort);
+
+var WebSocketServer = require('ws').Server;
+
+var wss = new WebSocketServer({
+    server: httpsServer
+});
+
+
 
 wss.on('close', function () {
     console.log('socket closed');
