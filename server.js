@@ -9,6 +9,7 @@
 
 
 console.log("Reading settings...");
+var fs = require("fs");
 var contents = fs.readFileSync("server_settings.json");
 var settings = JSON.parse(contents);
 
@@ -33,7 +34,6 @@ var resetting = 0;
 
 
 console.log("Setting up websocketserver");
-var fs = require("fs");
 var privatekey = fs.readFileSync('quiz.jost1.no-key.pem', 'utf8');
 var cerfificate = fs.readFileSync('quiz.jost1.no-crt.pem', 'utf8');
 var credentials = { key: privatekey, cert: cerfificate };
