@@ -41,7 +41,7 @@ var http = require('http');
 var httpServer = http.createServer(function(req, res) {
     res.writeHead(200, { 'Content-Type': 'text/html' });
     res.end('Hello, world');
-}).listen(process.env.PORT);
+}).listen(parseInt(process.env.PORT));
 
 var WebSocketServer = require('ws').Server;
 
