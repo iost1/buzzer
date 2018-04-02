@@ -1,0 +1,21 @@
+<html>
+<head>
+    <title>test io.socket</title>
+    <script>
+        var socket = io.connect('http://localhost/');
+        socket.on('connect',
+            function() {
+                socket.emit('set nickname', prompt('Nickname?'));
+                socket.on('ready',
+                    function() {
+                        console.log('Connected !');
+                        socket.emit('msg', prompt('Message?'));
+                    });
+            });
+
+
+
+    </script>
+</head>
+<body></body>
+</html>

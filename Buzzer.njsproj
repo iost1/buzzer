@@ -6,7 +6,7 @@
     <ProjectGuid>{e30ef0e3-ce7f-47bf-a04c-2ac72c15471c}</ProjectGuid>
     <ProjectHome />
     <ProjectView>ShowAllFiles</ProjectView>
-    <StartupFile>server.js</StartupFile>
+    <StartupFile>server_orig.js</StartupFile>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
     <ProjectTypeGuids>{3AF33F2E-1136-4D97-BBB7-1795711AC8B8};{349c5851-65df-11da-9384-00065b846f21};{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}</ProjectTypeGuids>
@@ -17,6 +17,7 @@
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
   <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
   <ItemGroup>
+    <Content Include="index.html" />
     <Content Include="instructions.txt" />
     <Content Include="button.html" />
     <Content Include="connection_refused.html" />
@@ -28,6 +29,7 @@
     <Content Include="settings.json" />
     <Content Include="README.md" />
     <Compile Include="server.js" />
+    <Compile Include="server_orig.js" />
     <Content Include="css\style_button.css" />
     <Content Include="css\style_host.css" />
     <Content Include="img\disbutton.png" />
