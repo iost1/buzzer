@@ -2,7 +2,7 @@
  * 
  */
 
-var wsPort = Number(process.env.port) || settings.ws_port;
+var wsPort =  settings.ws_port;
 var serverDomain = settings.server_domain;
 
 var socket;
@@ -25,13 +25,13 @@ function giveBirthToSocket()
 		var msg = JSON.parse(event.data);
 		switch (msg.label) {
 		case 'accepted client connection':
-			if (msg.id == id) {
+			if (msg.id === id) {
 				pid = msg.pid;
 				$('#player').html("<h1>Player " + pid + "</h1>");
 			}
 			break;
 		case 'abort player connection':
-			if (msg.id == id) {
+			if (msg.id === id) {
 				window.location.href = "connection_refused.html";
 			}
 			break;
@@ -40,7 +40,13 @@ function giveBirthToSocket()
 			break;
 		case 'disable buzz':
 			disableBuzz();
-			break;
+                break;
+            case 'table selected':
+                var tbl = msg.table;
+                $('#player').html("<h1>Bord " + tbl + "</h1>");
+                $('#bordvalg').hide();
+                console.log("Bord " + tbl + "valgt");
+                break;
 		default:
 			// Nothing
 		}
@@ -80,11 +86,22 @@ function cguid() {
     s4() + '-' + s4() + s4() + s4();
 }
 
+function selectTable() {
+    socket.send(JSON.stringify({
+        'label': 'bord - ' + document.getElementById("bord").value,
+        'pid': pid
+    }));
+    
+}
 $(function() {
 	pid = -1;
 	id = cguid();
 	$('#buzzbutt').on('click', function() {
 		sendBuzz();
-	});
+    });
+    $('#bord').change(
+        function () {
+            selectTable();
+        });
 	giveBirthToSocket();
 });
