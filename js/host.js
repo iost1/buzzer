@@ -153,7 +153,7 @@ function hguid() {
 }
 
 function loadAudioFiles() {
-    buzzAudio[0] = new Audio("audio/john-cena.mp3");
+    buzzAudio[12] = new Audio("audio/john-cena.mp3");
     buzzAudio[1] = new Audio("audio/mayushii-tuturu.mp3");
     buzzAudio[2] = new Audio("audio/rengechon-nyanpasu.mp3");
     buzzAudio[3] = new Audio("audio/asuka-antabaka.mp3");
@@ -165,9 +165,7 @@ function loadAudioFiles() {
     buzzAudio[9] = new Audio("audio/ghost-busters.mp3");
     buzzAudio[10] = new Audio("audio/air-horns.mp3");
     buzzAudio[11] = new Audio("audio/dog-bark.mp3");
-    buzzAudio[12] = new Audio("audio/dog-bark.mp3");
-    buzzAudio[13] = new Audio("audio/dog-bark.mp3");
-    buzzAudio[14] = new Audio("audio/dog-bark.mp3");
+    
 }
 
 $(function () {
