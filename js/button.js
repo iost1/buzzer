@@ -8,12 +8,13 @@ var serverDomain = settings.server_domain;
 var socket;
 var pid;
 var id;
+var tbl;
 
 function giveBirthToSocket() 
 {	socket = new WebSocket("ws:" + serverDomain + ":" + wsPort);
 
 	socket.onopen = function(event) {
-
+	    
 	};
 
 	socket.onclose = function(event) {
@@ -27,7 +28,7 @@ function giveBirthToSocket()
 		case 'accepted client connection':
 			if (msg.id === id) {
 				pid = msg.pid;
-				$('#player').html("<h1>Player " + pid + "</h1>");
+				$('#player').html("<h1>Bord " + pid + "</h1>");
 			}
 			break;
 		case 'abort player connection':
@@ -40,13 +41,7 @@ function giveBirthToSocket()
 			break;
 		case 'disable buzz':
 			disableBuzz();
-                break;
-            case 'table selected':
-                var tbl = msg.table;
-                $('#player').html("<h1>Bord " + tbl + "</h1>");
-                $('#bordvalg').hide();
-                console.log("Bord " + tbl + "valgt");
-                break;
+			break;
 		default:
 			// Nothing
 		}
@@ -54,7 +49,8 @@ function giveBirthToSocket()
 	setTimeout(function() {
 		socket.send(JSON.stringify({
 			'label' : 'client connection',
-			'id'	: id
+            'id': id,
+            'tbl': tbl
 		}));
 	}, 500);
 }
@@ -86,22 +82,26 @@ function cguid() {
     s4() + '-' + s4() + s4() + s4();
 }
 
-function selectTable() {
-    socket.send(JSON.stringify({
-        'label': 'bord - ' + document.getElementById("bord").value,
-        'pid': pid
-    }));
-    
-}
+var getUrlParameter = function getUrlParameter(sParam) {
+    var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
+
+    for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
+
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1] === undefined ? true : sParameterName[1];
+        }
+    }
+};
 $(function() {
 	pid = -1;
-	id = cguid();
+    id = cguid();
+    tbl = getUrlParameter("t");
 	$('#buzzbutt').on('click', function() {
 		sendBuzz();
-    });
-    $('#bord').change(
-        function () {
-            selectTable();
-        });
+	});
 	giveBirthToSocket();
 });

@@ -13,7 +13,6 @@ var connectionsDisabled = 0;
 var buzzAudio = [];
 var id;
 var connectedPlayers = [];
-var connectedTables = [];
 
 function giveBirthToSocket() {
     socket = new WebSocket("ws:" + serverDomain + ":" + wsPort);
@@ -44,7 +43,6 @@ function giveBirthToSocket() {
                 break;
             case 'accepted client connection':
                 addToConnected(msg.pid);
-                console.log('Pid: ' + msg.pid + ', id: ' + msg.id);
                 break;
             case 'client disconnected':
                 removeFromConnected(msg.pid);
@@ -78,18 +76,10 @@ function removeFromConnected(pid) {
     refreshConnectedDisplay();
 }
 
-function addToConnectedTables(pid, tid) {
-    connectedTables.push(tid);
-    refreshConnectedDisplay();
-}
 function refreshConnectedDisplay() {
-    //var content = "<h2>Connected players:</h2>";
-    //for (var i = 0; i < connectedPlayers.length; i++) {
-    //    content += "<h2>Player " + connectedPlayers[i] + "</h2>";
-    //}
     var content = "<h2>Connected tables:</h2>";
-    for (var j = 0; j < connectedTables.length; j++) {
-        content += "<h2>Table " + connectedTables[j] + "</h2>";
+    for (var i = 0; i < connectedPlayers.length; i++) {
+        content += "<h2>Player " + connectedPlayers[i] + "</h2>";
     }
     $('#players').html(content);
 }

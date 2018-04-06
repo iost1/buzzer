@@ -92,7 +92,7 @@ wss.on('connection', function (ws) {
                     }));
                 } else {
                     numPlayers += 1;
-                    pid = getAvailablePID();
+                    pid = msg.tbl; // getAvailablePID();
                     players[pid] = msg.id;
                     sidToPidMap[sid] = pid;
                     wss.broadcast(JSON.stringify({
@@ -136,15 +136,6 @@ wss.on('connection', function (ws) {
                 }));
                 break;
             default:
-                var m = msg.label.split(' - ');
-                pid = msg.pid;
-                tables[pid] = m[m.length - 1];
-                wss.broadcast(JSON.stringify({
-                    'label': 'table selected',
-                    'table': tables[pid],
-                    'id': pid
-                }));
-                console.log('Userid ' + pid + ' selected ' + tables[pid]);
                 break;
         }
     });
