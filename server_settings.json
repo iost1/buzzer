@@ -1,6 +1,6 @@
 {
   "player_limit": 14,
-  "server_domain": "192.168.1.178",
+  "server_domain": "quiz.northeurope.cloudapp.azure.com",
   "ws_port": 8081,
   "server_port": 80
 }
